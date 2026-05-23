@@ -1,0 +1,115 @@
+/* ============================================================
+   HematoX — Design Tokens
+   Single source of truth for all design values.
+   Import this file first; never hard-code values elsewhere.
+   ============================================================ */
+
+:root {
+  /* ── Backgrounds ─────────────────────────────────────────── */
+  --bg-void:          #080809;
+  --bg-base:          #0d0d0f;
+  --bg-surface:       #121214;
+  --bg-elevated:      #18181b;
+  --bg-glass:         rgba(18, 18, 20, 0.72);
+  --bg-glass-hover:   rgba(24, 24, 27, 0.85);
+
+  /* ── Borders ─────────────────────────────────────────────── */
+  --border-subtle:    rgba(255, 255, 255, 0.06);
+  --border-dim:       rgba(255, 255, 255, 0.10);
+  --border-active:    rgba(163, 29, 29, 0.6);
+
+  /* ── Inputs ──────────────────────────────────────────────── */
+  --bg-input:               #1a1a1f;
+  --bg-input-disabled:      #0b0b0d;
+  --border-input:           rgba(255, 255, 255, 0.16);
+  --border-input-disabled:  rgba(255, 255, 255, 0.06);
+  --border-input-focus:     var(--accent);
+  --shadow-input-focus:     0 0 0 2px rgba(163, 29, 29, 0.25), 0 0 8px rgba(163, 29, 29, 0.4);
+  --text-input:             var(--text-primary);
+  --text-input-disabled:    var(--text-muted);
+  --caret-input:            var(--accent);
+
+  /* ── Text ────────────────────────────────────────────────── */
+  --text-primary:     #f4f4f6;
+  --text-secondary:   #8e8e93;
+  --text-muted:       #5a5a5f;
+
+  /* ── Accent ──────────────────────────────────────────────── */
+  --accent:           #A31D1D;
+  --accent-hover:     #c22222;
+  --accent-glow:      rgba(163, 29, 29, 0.3);
+  --accent-dim:       rgba(163, 29, 29, 0.15);
+
+  /* ── Glass effect ────────────────────────────────────────── */
+  --glass-blur:       blur(16px) saturate(180%);
+  --glass-border:     1px solid rgba(255, 255, 255, 0.08);
+
+  /* ── Shadows ─────────────────────────────────────────────── */
+  --shadow-sm:        0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-md:        0 4px 16px rgba(0, 0, 0, 0.5);
+  --shadow-glow:      0 0 24px rgba(163, 29, 29, 0.2);
+
+  /* ── Radius ──────────────────────────────────────────────── */
+  --radius-pill:      999px;
+  --radius-card:      12px;
+  --radius-input:     8px;
+  --radius-btn:       8px;
+
+  /* ── Typography ──────────────────────────────────────────── */
+  --font-mono:        'JetBrains Mono', 'Fira Code', monospace;
+  --font-sans:        'Inter', system-ui, sans-serif;
+  
+  /* Typography Scale */
+  --text-page-title:  28px;
+  --text-section-hd:  18px;
+  --text-card-title:  15px;
+  --text-body:        14px;
+  --text-caption:     12px;
+  --text-badge:       11px;
+
+  /* ── Spacing Scale (4px base) ────────────────────────────── */
+  --space-1:          4px;
+  --space-2:          8px;
+  --space-3:          12px;
+  --space-4:          16px;
+  --space-5:          20px;
+  --space-6:          24px;
+  --space-8:          32px;
+  --space-10:         40px;
+  --space-12:         48px;
+  --space-16:         64px;
+}
+
+/* ── Light Mode Theme ────────────────────────────────────── */
+[data-theme="light"] {
+  --bg-void:          #f5f0eb;
+  --bg-base:          #F2EAE1;
+  --bg-surface:       #EAE0D5;
+  --bg-elevated:      #E3D5C8;
+  --bg-glass:         rgba(255, 255, 255, 0.72);
+  --bg-glass-hover:   rgba(255, 255, 255, 0.85);
+
+  --border-subtle:    rgba(0, 0, 0, 0.06);
+  --border-dim:       rgba(0, 0, 0, 0.10);
+  --border-active:    rgba(163, 29, 29, 0.6);
+
+  --bg-input:               #ffffff;
+  --bg-input-disabled:      #e5e0da;
+  --border-input:           #b5a595;
+  --border-input-disabled:  #d5c8bb;
+  --border-input-focus:     var(--accent);
+  --shadow-input-focus:     0 0 0 2px rgba(163, 29, 29, 0.2), 0 0 8px rgba(163, 29, 29, 0.3);
+  --text-input:             var(--text-primary);
+  --text-input-disabled:    var(--text-muted);
+  --caret-input:            var(--accent);
+
+  --text-primary:     #1a1a1a;
+  --text-secondary:   #4a4a4a;
+  --text-muted:       #7a7a7a;
+
+  --glass-border:     1px solid rgba(0, 0, 0, 0.08);
+
+  --shadow-sm:        0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-md:        0 4px 16px rgba(0, 0, 0, 0.1);
+  --shadow-glow:      0 0 24px rgba(163, 29, 29, 0.1);
+}

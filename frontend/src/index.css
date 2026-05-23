@@ -1,0 +1,536 @@
+/* ============================================================
+   HematoX — Global Styles
+   Imports design tokens; defines reusable utility classes.
+   No Tailwind — all styling via CSS variables + Framer Motion.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import './design/tokens.css';
+
+/* ── Reset / Base ─────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: var(--bg-void);
+  color: var(--text-primary);
+  font-family: 'Inter', system-ui, sans-serif;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ── Scrollbar ────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-base);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: var(--radius-pill);
+  opacity: 0.7;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-hover);
+  opacity: 1;
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) var(--bg-base);
+}
+
+/* ── Glassmorphism Card ───────────────────────────────────── */
+.glass-card {
+  background: var(--bg-glass);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: var(--glass-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-md);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.glass-card:hover {
+  border-color: rgba(163, 29, 29, 0.3);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(163, 29, 29, 0.2);
+}
+
+/* ── Pill Buttons ─────────────────────────────────────────── */
+.btn-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: var(--radius-pill);
+  padding: 6px 18px;
+  border: 1px solid var(--border-dim);
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  font-size: 13px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.btn-pill:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.btn-pill:active {
+  transform: scale(0.97);
+}
+
+.btn-accent {
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  color: #fff;
+  border-radius: var(--radius-pill);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 18px;
+  font-size: 13px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+.btn-accent:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+  box-shadow: var(--shadow-glow);
+}
+.btn-accent:active {
+  transform: scale(0.97);
+}
+
+/* ── Glass Input ──────────────────────────────────────────── */
+.input-glass {
+  background: var(--bg-input);
+  border: 1px solid var(--border-input);
+  border-radius: var(--radius-input);
+  color: var(--text-input);
+  caret-color: var(--caret-input);
+  padding: 8px 12px;
+  font-size: 13px;
+  font-family: inherit;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+.input-glass::placeholder {
+  color: var(--text-muted);
+}
+.input-glass:hover:not(:disabled) {
+  border-color: rgba(163, 29, 29, 0.4);
+}
+.input-glass:focus {
+  border-color: var(--border-input-focus);
+  outline: none;
+  box-shadow: var(--shadow-input-focus);
+}
+.input-glass:disabled {
+  background: var(--bg-input-disabled);
+  border-color: var(--border-input-disabled);
+  color: var(--text-input-disabled);
+  cursor: not-allowed;
+}
+
+/* Custom dropdown style for select inputs */
+select.input-glass {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238e8e93' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 14px;
+  padding-right: 32px;
+  cursor: pointer;
+}
+[data-theme="light"] select.input-glass {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234a4a4a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+}
+
+/* ── Chat Input Container ─────────────────────────────────── */
+.chat-input-container {
+  background: var(--bg-input);
+  border: 1px solid var(--border-input);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  padding: var(--space-2);
+}
+.chat-input-container:focus-within {
+  border-color: var(--border-input-focus);
+  box-shadow: var(--shadow-input-focus);
+}
+
+/* ── Chat Input Textarea ───────────────────────────────────── */
+.chat-input-textarea {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--text-input);
+  caret-color: var(--caret-input);
+  font-size: 14px;
+  padding: 8px;
+  outline: none;
+  resize: none;
+  min-height: 40px;
+  max-height: 120px;
+  font-family: var(--font-sans);
+  line-height: 1.4;
+}
+
+/* ── Navigation Links ─────────────────────────────────────── */
+.nav-link {
+  display: block;
+  padding: 10px 16px 10px 20px;
+  font-size: 14px;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+  border-left: 3px solid transparent;
+}
+.nav-link-active {
+  border-left: 3px solid var(--accent);
+  background-color: rgba(26, 26, 28, 0.6);
+  color: var(--text-primary);
+}
+.nav-link-inactive {
+  color: var(--text-secondary);
+}
+.nav-link-inactive:hover {
+  color: var(--text-primary);
+  background-color: rgba(26, 26, 28, 0.4);
+}
+
+/* ── Typography Utilities ─────────────────────────────────── */
+.text-page-title {
+  font-size: var(--text-page-title);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.text-section-hd {
+  font-size: var(--text-section-hd);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.text-card-title {
+  font-size: var(--text-card-title);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.text-body {
+  font-size: var(--text-body);
+  font-weight: 400;
+  color: var(--text-secondary);
+}
+.text-caption {
+  font-size: var(--text-caption);
+  font-weight: 400;
+  color: var(--text-muted);
+}
+.text-badge {
+  font-size: var(--text-badge);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ── Utilities ────────────────────────────────────────────── */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 4px;
+}
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: var(--border-dim);
+  border-radius: 4px;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+.scrollbar-thin {
+  scrollbar-width: thin;
+}
+
+/* ── Markdown Content Styling ────────────────────────────── */
+.markdown-content {
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+}
+
+.markdown-content p {
+  margin-top: 0;
+  margin-bottom: 12px;
+  color: var(--text-secondary);
+}
+
+.markdown-content p:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3,
+.markdown-content h4,
+.markdown-content h5,
+.markdown-content h6 {
+  color: var(--text-primary);
+  font-weight: 600;
+  line-height: 1.3;
+  margin-top: 18px;
+  margin-bottom: 8px;
+}
+
+.markdown-content h1:first-child,
+.markdown-content h2:first-child,
+.markdown-content h3:first-child {
+  margin-top: 0;
+}
+
+.markdown-content h1 {
+  font-size: 16px;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 6px;
+  margin-top: 22px;
+}
+
+.markdown-content h2 {
+  font-size: 14.5px;
+  border-left: 3px solid var(--accent);
+  padding-left: 8px;
+  background: var(--accent-dim);
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-radius: 0 4px 4px 0;
+}
+
+.markdown-content h3 {
+  font-size: 13.5px;
+}
+
+.markdown-content h4 {
+  font-size: 12.5px;
+}
+
+/* Lists styling with nesting support */
+.markdown-content ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+.markdown-content ol {
+  list-style-type: decimal;
+  padding-left: 20px;
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+.markdown-content li {
+  margin-bottom: 6px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.markdown-content li > p {
+  margin-bottom: 4px;
+}
+
+/* Nested lists */
+.markdown-content ul ul,
+.markdown-content ol ul,
+.markdown-content ul ol,
+.markdown-content ol ol {
+  margin-top: 6px;
+  margin-bottom: 0;
+  padding-left: 20px;
+}
+
+.markdown-content ul ul {
+  list-style-type: circle;
+}
+
+.markdown-content ul ul ul {
+  list-style-type: square;
+}
+
+/* Bold and emphasis */
+.markdown-content strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.markdown-content em {
+  color: var(--text-primary);
+  font-style: italic;
+}
+
+/* Blockquotes */
+.markdown-content blockquote {
+  border-left: 3px solid var(--border-dim);
+  padding-left: 12px;
+  margin: 12px 0;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.markdown-content blockquote p {
+  margin-bottom: 0;
+}
+
+/* Horizontal Rules */
+.markdown-content hr {
+  border: 0;
+  border-top: 1px solid var(--border-subtle);
+  margin: 16px 0;
+}
+
+/* Code and Pre overrides */
+.markdown-content code {
+  font-family: var(--font-mono);
+}
+
+.markdown-content pre {
+  font-family: var(--font-mono);
+}
+
+/* ── Premium Markdown Tables ──────────────────────────────── */
+.markdown-table-wrapper {
+  overflow-x: auto;
+  margin: var(--space-5) 0;
+  border: 1px solid var(--border-dim);
+  border-top: 2px solid var(--accent); /* red top accent border */
+  border-radius: 0; /* sharp corners */
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.markdown-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px; /* clean legibility */
+  text-align: left;
+}
+
+.markdown-table th {
+  background: var(--accent-dim); /* red accent tint header */
+  padding: var(--space-3) var(--space-4); /* generous elegant padding */
+  border-bottom: 1px solid var(--border-dim);
+  font-weight: 600;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+}
+
+.markdown-table td {
+  padding: var(--space-3) var(--space-4); /* spacious padding */
+  border-bottom: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.markdown-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.markdown-table tbody tr {
+  transition: background-color 0.15s ease;
+}
+
+.markdown-table tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.012);
+}
+
+[data-theme="light"] .markdown-table tbody tr:nth-child(even) {
+  background: rgba(0, 0, 0, 0.012);
+}
+
+.markdown-table tbody tr:hover {
+  background: rgba(163, 29, 29, 0.05); /* premium red accent glow on hover */
+}
+
+.markdown-table tbody tr:hover td {
+  color: var(--text-primary);
+}
+
+/* ── Page Transition Pre-Hidden State ──────────────────────── */
+.page-transition-container {
+  opacity: 0;
+  transform: translateY(8px);
+  will-change: opacity, transform;
+}
+
+/* ── Scroll Lock & Mobile Scroll Bleed Prevention ───────────── */
+body.scroll-locked {
+  overflow: hidden !important;
+  touch-action: none;
+}
+
+body.scroll-locked main {
+  overflow-y: hidden !important;
+  padding-right: var(--scrollbar-width, 0px) !important;
+}
+
+/* Ensure mobile drawer panels have proper containment */
+.cbc-output-panel {
+  overscroll-behavior: contain !important;
+}
+
+/* ── Referenced Report Pill ──────────────────────────────── */
+.referenced-report-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  background: rgba(163, 29, 29, 0.18);
+  border: 1px solid rgba(163, 29, 29, 0.4);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 11px;
+  font-family: var(--font-mono);
+  border-radius: 9999px;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.referenced-report-pill:hover {
+  background: rgba(163, 29, 29, 0.35) !important;
+  border-color: rgba(163, 29, 29, 0.75) !important;
+  box-shadow: 0 0 8px rgba(163, 29, 29, 0.25);
+  transform: translateY(-1px);
+}
+
+.referenced-report-pill:active {
+  transform: translateY(0);
+}
+
+[data-theme="light"] .referenced-report-pill {
+  background: rgba(163, 29, 29, 0.08);
+  border-color: rgba(163, 29, 29, 0.3);
+  color: var(--accent);
+}
+
+[data-theme="light"] .referenced-report-pill:hover {
+  background: rgba(163, 29, 29, 0.15) !important;
+  border-color: rgba(163, 29, 29, 0.5) !important;
+  box-shadow: 0 0 8px rgba(163, 29, 29, 0.15);
+}
+
+
+

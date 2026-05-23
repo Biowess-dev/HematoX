@@ -1,0 +1,11 @@
+[tool.pytest.ini_options]
+testpaths = ["backend"]
+asyncio_mode = "auto"
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+filterwarnings = ["ignore::DeprecationWarning"]
+
+[tool.coverage.run]
+source = ["backend"]
+omit = ["backend/test_*.py", "backend/__pycache__/*"]

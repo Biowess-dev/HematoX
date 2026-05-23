@@ -1,0 +1,65 @@
+Custom Source-Available License 1.0
+
+Copyright (c) 2026 BIOWESS
+
+All rights reserved except as expressly permitted below.
+
+1. Permission Granted
+
+You are permitted to:
+
+- View and study the source code.
+- Clone and download the repository.
+- Run the software locally for personal or educational use.
+- Modify the source code for personal learning purposes.
+- Share snippets or modified versions for non-commercial educational purposes,
+  provided proper credit is clearly given to the original author.
+
+2. Restrictions
+
+You may NOT, without prior written permission from the copyright holder:
+
+- Sell this software or any modified version of it.
+- Use this software in a commercial product or service.
+- Offer this software as a paid SaaS, hosted platform, or subscription service.
+- Rebrand, sublicense, or redistribute this software while claiming it as your own work.
+- Remove copyright notices, attribution, or license text.
+- Use substantial portions of this software in commercial projects.
+- Create commercial derivatives based primarily on this project.
+
+3. Attribution Requirement
+
+Any public use, fork, modification, or redistribution of this project or its
+derivatives must include visible credit to the original author.
+
+Example attribution:
+
+"Based on HematoX by BIOWESS"
+
+4. Ownership
+
+The software and all associated intellectual property remain the exclusive
+property of the copyright holder.
+
+This license does not transfer ownership of the software or grant any trademark rights.
+
+5. Contributions
+
+Unless explicitly stated otherwise, any contributions submitted to this project
+may be incorporated into the project under this same license.
+
+6. Warranty Disclaimer
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR
+OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE
+USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+7. Acceptance
+
+By cloning, downloading, using, or modifying this software, you agree to the
+terms of this license.
