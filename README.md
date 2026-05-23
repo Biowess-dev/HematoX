@@ -27,7 +27,7 @@
 
 ## What is HematoX?
 
-HematoX is a **privacy-first, locally-hosted** web application for hematology reasoning and education. It accepts structured clinical lab inputs — CBC, coagulation panels, and ROTEM/TEG parameters, and uses the **Gemini API** to generate detailed, guideline-anchored interpretations.
+HematoX is a **privacy-first, locally-hosted** web application for hematology reasoning and education. It accepts structured clinical lab inputs, CBC, coagulation panels, and ROTEM/TEG parameters, and uses the **Gemini API** to generate detailed, guideline-anchored interpretations.
 
 Everything runs on your machine. No cloud sync. No accounts. No patient data leaves your computer.
 
@@ -43,14 +43,14 @@ Everything runs on your machine. No cloud sync. No accounts. No patient data lea
 | **AI Chat** | Context-aware hematology assistant with access to your generated reports |
 | **Casebook** | Persistent, searchable archive of all generated reports |
 | **PDF Export** | Clean, typeset PDF export of any report |
-| **Settings** | Configure your Gemini API key directly in the UI — no terminal needed |
+| **Settings** | Configure your Gemini API key directly in the UI, no terminal needed |
 
 ### Privacy First
 
-- **Fully local** — backend and frontend run on `localhost`
-- **No telemetry** — zero analytics, tracking, or external calls (except Gemini API)
-- **Your data stays yours** — SQLite database lives on your own machine
-- **No account required** — open and use immediately
+- **Fully local** - backend and frontend run on `localhost`
+- **No telemetry** - zero analytics, tracking, or external calls (except Gemini API)
+- **Your data stays yours** - SQLite database lives on your own machine
+- **No account required** - open and use immediately
 
 ---
 
@@ -70,11 +70,11 @@ HematoX/
 │   ├── validators.py          # Input validation schemas
 │   ├── middleware.py          # Request-ID correlation middleware
 │   └── routers/
-│       ├── analyze.py         # POST /api/analyze — core analysis
-│       ├── reports.py         # GET/PATCH /api/reports — casebook
-│       ├── chat.py            # POST /api/chat — AI chat sessions
-│       ├── settings.py        # GET/POST /api/settings — configuration
-│       └── export.py          # GET /api/export — PDF generation
+│       ├── analyze.py         # POST /api/analyze - core analysis
+│       ├── reports.py         # GET/PATCH /api/reports - casebook
+│       ├── chat.py            # POST /api/chat - AI chat sessions
+│       ├── settings.py        # GET/POST /api/settings - configuration
+│       └── export.py          # GET /api/export - PDF generation
 │
 ├── frontend/                  # React / Vite / Tailwind
 │   └── src/
@@ -156,7 +156,7 @@ Get a free Gemini API key at [aistudio.google.com](https://aistudio.google.com/a
 
 ## Installation
 
-### Option A — Automatic (recommended)
+### Option A: Automatic (recommended)
 
 The `start.py` launcher handles everything: dependency installation, service startup, and browser launch.
 
@@ -186,7 +186,7 @@ The launcher will:
 
 ---
 
-### Option B — Manual setup
+### Option B: Manual setup
 
 ```bash
 # 1. Clone
@@ -196,10 +196,10 @@ cd HematoX
 # 2. Python environment (recommended: virtual env)
 python -m venv .venv
 
-# Activate — Linux / macOS:
+# Activate - Linux / macOS:
 source .venv/bin/activate
 
-# Activate — Windows (PowerShell):
+# Activate - Windows (PowerShell):
 .venv\Scripts\Activate.ps1
 
 # 3. Install Python dependencies
@@ -308,7 +308,7 @@ The database is created automatically. If it appears corrupt:
 ```bash
 # Delete and let the app recreate it
 rm hematox.db
-# Restart the backend — tables are re-created on startup
+# Restart the backend - tables are re-created on startup
 ```
 
 ### CORS errors in browser console
@@ -339,7 +339,7 @@ grep "your-request-id" logs/app.log
 
 ## Contributing
 
-Contributions are welcome! HematoX is an educational project — improvements to clinical accuracy, UI/UX, and documentation are especially appreciated.
+Contributions are welcome! HematoX is an educational project, improvements to clinical accuracy, UI/UX, and documentation are especially appreciated.
 
 ```bash
 # Fork and clone
@@ -379,11 +379,11 @@ python -m pytest backend/test_analyze.py -v
 
 ## Project Structure Notes
 
-- `corpus/` — Clinical reference Markdown. Replace with your own guidelines.
-- `fonts/` — TeX Gyre Termes fonts for PDF export. Do not delete.
-- `logs/` — Log directory. `.gitkeep` is committed; log files are gitignored.
-- `backend/test_*.py` — Test suite. Run before any pull request.
-- `design.md` — Internal design system reference. Not required for usage.
+- `corpus/` - Clinical reference Markdown. Replace with your own guidelines.
+- `fonts/` - TeX Gyre Termes fonts for PDF export. Do not delete.
+- `logs/` - Log directory. `.gitkeep` is committed; log files are gitignored.
+- `backend/test_*.py` - Test suite. Run before any pull request.
+- `design.md` - Internal design system reference. Not required for usage.
 
 ---
 
