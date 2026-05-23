@@ -4,11 +4,11 @@
 
 **Local-first hematology reasoning engine for medical education**
 
-[![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue?logo=python&logoColor=white)](https://python.org)
-[![React 18](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=white)](https://react.dev)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.111-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
-[![Vite](https://img.shields.io/badge/Vite-5-646CFF?logo=vite&logoColor=white)](https://vitejs.dev)
-[![License: Source Available](https://img.shields.io/badge/License-Source--Available-blue.svg)](LICENSE)
+[![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-A31D1D?logo=python&logoColor=white)](https://python.org)
+[![React 18](https://img.shields.io/badge/React-18-A31D1D?logo=react&logoColor=white)](https://react.dev)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.111-A31D1D?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
+[![Vite](https://img.shields.io/badge/Vite-5-A31D1D?logo=vite&logoColor=white)](https://vitejs.dev)
+[![License: Source Available](https://img.shields.io/badge/License-Source--Available-A31D1D.svg)](LICENSE)
 
 <p align="center">
   <a href="#features">Features</a> ·
