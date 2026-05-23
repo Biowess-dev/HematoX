@@ -27,7 +27,7 @@
 
 ## What is HematoX?
 
-HematoX is a **privacy-first, locally-hosted** web application for hematology reasoning and education. It accepts structured clinical lab inputs — CBC, coagulation panels, and ROTEM/TEG parameters — and uses the **Gemini API** to generate detailed, guideline-anchored interpretations.
+HematoX is a **privacy-first, locally-hosted** web application for hematology reasoning and education. It accepts structured clinical lab inputs — CBC, coagulation panels, and ROTEM/TEG parameters, and uses the **Gemini API** to generate detailed, guideline-anchored interpretations.
 
 Everything runs on your machine. No cloud sync. No accounts. No patient data leaves your computer.
 
