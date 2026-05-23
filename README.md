@@ -180,6 +180,8 @@ The launcher will:
 - Start backend and frontend
 - Open your browser automatically
 
+![Launcher](docs/screenshots/script.png)
+
 > 💡 **No API key yet?** You can skip step 2 and set the key later inside the app under **Settings → Gemini API Key**.
 
 ---
