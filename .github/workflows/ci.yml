@@ -1,4 +1,5 @@
 name: CI
+
 on:
   push:
     branches: [main, develop]
@@ -8,15 +9,23 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: .
+
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
           cache: "pip"
+
       - name: Install dependencies
         run: pip install -r requirements.txt
-      - name: Run tests
-        run: python -m pytest --tb=short -q
-      - name: Coverage report
-        run: python -m pytest --cov=backend --cov-report=term-missing -q
+
+      - name: Run tests with coverage
+        run: python -m pytest --cov=backend --cov-report=term-missing --tb=short -q
+        env:
+          GEMINI_API_KEY: ""
