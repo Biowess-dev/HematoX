@@ -1,8 +1,6 @@
 <div align="center">
 
-<img src="frontend/assets/logo.png" alt="HematoX Logo" width="180"/>
-
-# HematoX
+<img src="frontend/assets/logo.png" alt="HematoX Logo" width="420"/>
 
 **Local-first hematology reasoning engine for medical education**
 
