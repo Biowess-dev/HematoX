@@ -104,7 +104,6 @@ Browser (React) → Vite dev proxy → FastAPI (port 8000)
 
 ## Screenshots
 
-| Screenshot | Screenshot |
 |---|---|
 | ![CBC Analysis](docs/screenshots/cbc.png) | ![Casebook](docs/screenshots/casebook.png) |
 | **CBC Analysis** | **Casebook** |
