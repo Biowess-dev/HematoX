@@ -9,7 +9,15 @@
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.111-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
 [![Vite](https://img.shields.io/badge/Vite-5-646CFF?logo=vite&logoColor=white)](https://vitejs.dev)
 [![License: Source Available](https://img.shields.io/badge/License-Source--Available-blue.svg)](LICENSE)
-[Features](#-features) · [Architecture](#-architecture) · [Installation](#-installation) · [Usage](#-usage) · [Troubleshooting](#-troubleshooting) · [Contributing](#-contributing)
+
+<p align="center">
+  <a href="#features">Features</a> ·
+  <a href="#architecture">Architecture</a> ·
+  <a href="#installation">Installation</a> ·
+  <a href="#usage">Usage</a> ·
+  <a href="#troubleshooting">Troubleshooting</a> ·
+  <a href="#contributing">Contributing</a>
+</p>
 
 > ⚠️ **Medical Disclaimer:** HematoX is strictly for **educational and research use**. It is **not** a clinical diagnostic tool. All outputs must be reviewed by a qualified clinician. Never use for treatment decisions.
 
