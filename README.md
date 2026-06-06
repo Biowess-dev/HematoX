@@ -190,7 +190,7 @@ The launcher will:
 
 ```bash
 # 1. Clone
-git clone https://github.com/your-/HematoX.git
+git clone https://github.com/biowess/HematoX.git
 cd HematoX
 
 # 2. Python environment (recommended: virtual env)
