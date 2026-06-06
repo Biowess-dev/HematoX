@@ -6,6 +6,16 @@ from backend.logger import get_logger
 logger = get_logger("hematox.gemini")
 
 
+def _log_token_usage(usage) -> None:
+    """Log Gemini token usage metadata if present."""
+    if usage:
+        logger.info(
+            f"Gemini token usage — prompt: {getattr(usage, 'prompt_token_count', '?')}, "
+            f"candidates: {getattr(usage, 'candidates_token_count', '?')}, "
+            f"total: {getattr(usage, 'total_token_count', '?')}"
+        )
+
+
 async def generate(prompt: str, model: str = "gemini-3.1-flash-lite") -> str:
     """
     Generate content using the Gemini API.
@@ -17,7 +27,7 @@ async def generate(prompt: str, model: str = "gemini-3.1-flash-lite") -> str:
     Wraps entire API call in try/except; on any exception raises RuntimeError(f"Gemini API error: {str(e)}").
     """
     key = os.environ.get("GEMINI_API_KEY", "")
-    if key is None or key == "":
+    if not key:
         raise ValueError("GEMINI_API_KEY not configured")
 
     def _call_gemini() -> str:
@@ -28,13 +38,7 @@ async def generate(prompt: str, model: str = "gemini-3.1-flash-lite") -> str:
         )
 
         # Log token usage if available
-        usage = getattr(response, "usage_metadata", None)
-        if usage:
-            logger.info(
-                f"Gemini token usage — prompt: {getattr(usage, 'prompt_token_count', '?')}, "
-                f"candidates: {getattr(usage, 'candidates_token_count', '?')}, "
-                f"total: {getattr(usage, 'total_token_count', '?')}"
-            )
+        _log_token_usage(getattr(response, "usage_metadata", None))
 
         if response and response.text:
             return response.text
@@ -74,13 +78,7 @@ async def generate_chat(
         )
 
         # Log token usage if available
-        usage = getattr(response, "usage_metadata", None)
-        if usage:
-            logger.info(
-                f"Gemini token usage — prompt: {getattr(usage, 'prompt_token_count', '?')}, "
-                f"candidates: {getattr(usage, 'candidates_token_count', '?')}, "
-                f"total: {getattr(usage, 'total_token_count', '?')}"
-            )
+        _log_token_usage(getattr(response, "usage_metadata", None))
 
         return response.text if response and response.text else ""
 

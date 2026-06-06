@@ -2,7 +2,7 @@ import os
 import time
 import uuid
 import json
-from datetime import datetime
+from datetime import datetime, timezone
 
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
@@ -23,7 +23,7 @@ def _resolve_corpus_mtime(module_type: str) -> str:
     try:
         path = CORPUS_MAP[module_type]
         mtime = os.path.getmtime(path)
-        return datetime.utcfromtimestamp(mtime).strftime("%Y-%m-%dT%H:%M:%SZ")
+        return datetime.fromtimestamp(mtime, tz=timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     except Exception:
         return "unknown"
 
@@ -39,9 +39,10 @@ async def get_next_display_id(module_type: str) -> str:
     return f"{module_type}-{max_num + 1}"
 
 
-async def save_report(module_type: str, inputs: dict, markdown: str, title: str, patient_name: str = "", display_id: str = "", corpus_mtime: str = "") -> str:
+async def save_report(module_type: str, inputs: dict, markdown: str, patient_name: str = "", display_id: str = "", corpus_mtime: str = "") -> str:
+    """Persist a completed analysis report to the database and return its UUID."""
     report_id = str(uuid.uuid4())
-    title = f"{display_id} — {module_type.upper()} Report — {datetime.utcnow().strftime('%Y-%m-%d %H:%M')}"
+    title = f"{display_id} — {module_type.upper()} Report — {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M')}"
     async with get_db() as db:
         await db.execute(
             "INSERT INTO reports (id, module_type, input_parameters, generated_report, title, is_bookmarked, patient_name, display_id, is_saved, corpus_mtime) VALUES (?, ?, ?, ?, ?, 0, ?, ?, 0, ?)",
@@ -87,7 +88,7 @@ async def _run_analysis(module_type: str, inputs_dict: dict, patient_name: str, 
 async def _persist_report(module_type: str, inputs_dict: dict, response_text: str, patient_name: str, display_id: str, corpus_mtime: str):
     """Save report to DB; returns (report_id, save_error)."""
     try:
-        report_id = await save_report(module_type, inputs_dict, response_text, "", patient_name=patient_name, display_id=display_id, corpus_mtime=corpus_mtime)
+        report_id = await save_report(module_type, inputs_dict, response_text, patient_name=patient_name, display_id=display_id, corpus_mtime=corpus_mtime)
         logger.info(f"{module_type.upper()} report saved — report_id: {report_id}, display_id: {display_id}")
         return report_id, None
     except Exception as e:

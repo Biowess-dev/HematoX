@@ -2,8 +2,10 @@ import json
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from backend.database import get_db
+from backend.logger import get_logger
 
 router = APIRouter()
+logger = get_logger("hematox.reports")
 
 
 class ReportUpdate(BaseModel):
@@ -56,8 +58,9 @@ async def get_report(report_id: str):
             row_dict = dict(row)
             try:
                 row_dict["input_parameters"] = json.loads(row_dict["input_parameters"])
-            except Exception:
-                pass
+            except json.JSONDecodeError:
+                # Return the raw string if parsing fails (e.g., legacy/malformed data)
+                logger.debug(f"Could not JSON-decode input_parameters for report {report_id}")
             row_dict["is_bookmarked"] = int(row_dict["is_bookmarked"])
             return row_dict
 

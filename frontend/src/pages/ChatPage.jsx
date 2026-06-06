@@ -88,17 +88,19 @@ export default function ChatPage() {
     const attachReportsStr = searchParams.get('attachReports');
     const attachReportStr = searchParams.get('attachReport');
 
-    if (sessions.length > 0 && (attachReportsStr || attachReportStr)) {
-      // Find or create an active chat session to inject references
-      const currentActiveSession = sessions.find(s => s.id === activeSessionId);
-      if (currentActiveSession && currentActiveSession.isEmpty) {
-        // We can just use the existing empty active session.
-        // Let ChatWorkspace handle the attachment and clearing.
-      } else {
-        // Trigger a new session creation.
-        // Do NOT clear parameters here; let the new ChatWorkspace clear them once mounted.
-        handleNewSession();
-      }
+    if (!(attachReportsStr || attachReportStr)) return;
+    if (sessions.length === 0) return;
+
+    const currentActiveSession = sessions.find(s => s.id === activeSessionId);
+    if (currentActiveSession && currentActiveSession.isEmpty) {
+      // The active session is still empty — ChatWorkspace will handle attaching.
+      return;
+    }
+
+    // Only create a new session when the active session already has messages.
+    // Avoid calling handleNewSession() on first mount when one was just created.
+    if (activeSessionId !== null) {
+      handleNewSession();
     }
   }, [sessions, activeSessionId, searchParams]);
 

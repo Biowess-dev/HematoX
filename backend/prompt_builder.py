@@ -1,6 +1,17 @@
+"""
+Prompt construction for HematoX analysis requests.
+
+Provides flag_outliers() for extreme-value detection and
+build_analysis_prompt() to assemble the full LLM prompt.
+"""
 import json
 
 def flag_outliers(module_type: str, inputs: dict) -> list[str]:
+    """Return a list of human-readable warning strings for extreme or
+    physiologically implausible values in *inputs* for the given *module_type*.
+
+    Does not raise; returns an empty list if no outliers are detected.
+    """
     warnings = []
     if module_type == "cbc":
         hb = inputs.get("hb")
@@ -31,9 +42,14 @@ def flag_outliers(module_type: str, inputs: dict) -> list[str]:
                     warnings.append(f"{assay.upper()} MCF < 0 — invalid value")
     return warnings
 
-def build_analysis_prompt(module_type: str, corpus: str, inputs: dict,
-                          patient_name: str = "", display_id: str = "",
-                          attached_reports: list[str] = []) -> str:
+def build_analysis_prompt(
+    module_type: str,
+    corpus: str,
+    inputs: dict,
+    patient_name: str = "",
+    display_id: str = "",
+    attached_reports: list[str] | None = None,
+) -> str:
     """
     Assemble the prompt in this exact order:
       1. System rules block
@@ -45,6 +61,9 @@ def build_analysis_prompt(module_type: str, corpus: str, inputs: dict,
       7. If warnings list is non-empty: ## OUTLIER FLAGS\n + newline-joined warnings
       8. Output contract
     """
+    if attached_reports is None:
+        attached_reports = []
+
     system_rules = (
         "You are HEMATOX, a domain-locked hematology reasoning engine for educational and clinical decision-support use.\n"
         "CONTEXT PRIORITY LAW (strictly enforced):\n"

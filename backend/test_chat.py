@@ -210,7 +210,7 @@ class TestChatRouter(unittest.TestCase):
             async with get_db() as db:
                 await append_message(self.session_id_1, "invalid_role", "Test helper", db)
 
-        with self.assertRaises(AssertionError):
+        with self.assertRaises(ValueError):
             asyncio.run(run_append_invalid_role())
 
     def test_send_message_session_not_found(self):

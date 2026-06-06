@@ -169,8 +169,7 @@ def ensure_env():
     section("Environment")
     if not ENV_FILE.exists():
         if ENV_EXAMPLE.exists():
-            import shutil as _sh
-            _sh.copy(ENV_EXAMPLE, ENV_FILE)
+            shutil.copy(ENV_EXAMPLE, ENV_FILE)
             warn(".env not found — created from .env.example")
             info("Open .env and add your GEMINI_API_KEY, or set it later in the app Settings page.")
         else:

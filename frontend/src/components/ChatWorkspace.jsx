@@ -41,6 +41,8 @@ export default function ChatWorkspace({ sessionId, onSessionUpdated }) {
   const messageListRef = useRef(null);
   const dropdownRef = useRef(null);
   const textareaRef = useRef(null);
+  // Guard: only attach reports once per mount, even if the effect re-fires
+  const hasAttachedRef = useRef(false);
 
   // Fetch available reports on mount
   useEffect(() => {
@@ -49,7 +51,8 @@ export default function ChatWorkspace({ sessionId, onSessionUpdated }) {
         const reports = response.data || [];
         setAvailableReports(reports);
         
-        if (attachReportParam) {
+        if (attachReportParam && !hasAttachedRef.current) {
+          hasAttachedRef.current = true;
           const reportIds = attachReportParam.split(',');
           const attached = [];
           reportIds.forEach(idStr => {

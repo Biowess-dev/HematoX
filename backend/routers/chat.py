@@ -1,3 +1,5 @@
+import datetime
+import json
 import time
 import uuid
 
@@ -51,7 +53,6 @@ async def create_session(body: SessionCreate = SessionCreate()):
     - Inserts into chat_sessions.
     - Returns {"session_id": session_id, "title": title}.
     """
-    import datetime
     session_id = str(uuid.uuid4())
     created_at = datetime.datetime.now(datetime.timezone.utc).isoformat().replace("+00:00", "Z")
     async with get_db() as db:
@@ -196,7 +197,6 @@ async def send_message(session_id: str, body: ChatSendRequest):
                             "display_id": row["display_id"]
                         })
 
-    import json
     referenced_reports_json = json.dumps(attached_report_details) if attached_report_details else None
 
     # 5. Build system_prompt and multi-turn contents list.
@@ -299,15 +299,15 @@ async def delete_all_sessions():
     return {"status": "all deleted"}
 
 
-async def append_message(session_id: str, role: str, content: str, db, referenced_reports: str = None) -> None:
-
+async def append_message(session_id: str, role: str, content: str, db, referenced_reports: str | None = None) -> None:
     """
     Helper function to insert a message into chat_messages.
     - Inserts one row: session_id=session_id, role=role, content=content, referenced_reports=referenced_reports.
     - role must be either "user" or "model".
     - Does not commit - caller is responsible for commit.
     """
-    assert role in ("user", "model"), "Role must be 'user' or 'model'"
+    if role not in ("user", "model"):
+        raise ValueError(f"append_message: role must be 'user' or 'model', got {role!r}")
     await db.execute(
         "INSERT INTO chat_messages (session_id, role, content, referenced_reports) VALUES (?, ?, ?, ?)",
         (session_id, role, content, referenced_reports)
