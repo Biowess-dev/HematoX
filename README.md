@@ -162,7 +162,7 @@ The `start.py` launcher handles everything: dependency installation, service sta
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/your-username/HematoX.git
+git clone https://github.com/your-/HematoX.git
 cd HematoX
 
 # 2. (Optional) Set your Gemini API key in advance
@@ -190,7 +190,7 @@ The launcher will:
 
 ```bash
 # 1. Clone
-git clone https://github.com/your-username/HematoX.git
+git clone https://github.com/your-/HematoX.git
 cd HematoX
 
 # 2. Python environment (recommended: virtual env)
@@ -343,7 +343,7 @@ Contributions are welcome! HematoX is an educational project, improvements to cl
 
 ```bash
 # Fork and clone
-git clone https://github.com/your-username/HematoX.git
+git clone https://github.com/biowess/HematoX.git
 cd HematoX
 
 # Create a feature branch
