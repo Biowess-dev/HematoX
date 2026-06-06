@@ -162,7 +162,7 @@ The `start.py` launcher handles everything: dependency installation, service sta
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/your-/HematoX.git
+git clone https://github.com/biowess/HematoX.git
 cd HematoX
 
 # 2. (Optional) Set your Gemini API key in advance
